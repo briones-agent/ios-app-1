@@ -1,3 +1,18 @@
+# ownCloud iOS + React Native
+
+Experimental fork of [ownCloud iOS](https://github.com/owncloud/ios-app) testing brownfield
+support for existing iOS codebases. Commits serve as reference for integrating
+React Native without refactoring the project structure.
+
+Uses Expo's brownfield isolated approach.
+
+## Integration steps
+1. **Create Expo app**: the React Native screen is prebuilt once in the shared [expo-brownfield-shared-ios](https://github.com/briones-agent/expo-brownfield-shared-ios) Swift Package (product `ExpoBrownfieldPackage`, module `ExpoBrownfieldKit`).
+2. **Install expo-brownfield**: add the remote Swift Package to the `ownCloud` app target (init the `ios-sdk` submodule first).
+3. **Integrate**: `ownCloud/ExpoIntegration.swift` adds a floating "Expo" button on an overlay `UIWindow` that presents `ReactNativeViewController(moduleName: "main")`; `AppDelegate` calls `ExpoIntegration.bootstrap()` at launch. iOS deployment target bumped to 16.4.
+
+<details><summary>ownCloud iOS</summary>
+
 # [ownCloud](https://owncloud.org) iOS App
 
 ## 📲 Download
@@ -71,3 +86,6 @@ Easy starting points are also reviewing [pull requests](https://github.com/owncl
 | User       | demo              |
 | Password   | demo              |
 
+
+
+</details>
